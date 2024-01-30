@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Segmentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script>
+    function check() {
+      let age = document.getElementById("age");
+      let annual_income = document.getElementById("annual_income");
+      let spending_score = document.getElementById("spending_score");
+
+      if (age.value == "" || annual_income.value == "" || spending_score.value == "") {
+        alert("Please Fill in all the Fields. ")
+        ans.innerHTML = "";
+        age.focus();
+        return false;
+      }
+      else if (age.value <= 0 || annual_income.value <= 0 || spending_score.value <= 0) {
+        alert("Sorry, 0 or -ve number not allowed ")
+        ans.innerHTML = "";
+        age.focus();
+        age.value = "";
+        annual_income.value = "";
+        spending_score.value = "";
+        return false;
+      }
+      else {
+        return true
+      }
+
+    }
+
+    function resetForm() {
+      document.getElementById("age").value = "";
+      document.getElementById("annual_income").value = "";
+      document.getElementById("spending_score").value = "";
+      document.getElementById("ans").innerHTML = "";
+    }
+    function redirectToPredictSection() {
+      // Use smooth scrolling to scroll to the #predict section
+      document.getElementById('predict').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* #predict {
+      height: 100vh;
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    } */
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation bar -->
+  <header class="text-gray-600 body-font bg-blue-300">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+        <a class="mr-5 hover:text-gray-900"></a>
+        <a href="#predict" class="mr-5 hover:text-gray-900">Prediction</a>
+        <a href="#visualization" class="mr-5 hover:text-gray-900">Visualization</a>
+        <a href="#faq" class="hover:text-gray-900">FAQ</a>
+      </nav>
+      <a href="#hero"
+        class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
+        <img src="/static/logo.png" alt="Logo" class="w-10 h-10 rounded-full">
+        <span class="ml-3 text-xl">Customer Segmentation</span>
+      </a>
+      <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- <br /> <br /> <br /> -->
+
+  <!-- Hero Section -->
+  <section id="hero" class="h-screen text-gray-600 body-font bg-blue-50">
+    <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <img class="object-cover object-center rounded" alt="hero" src="/static/hero.jpg">
+      </div>
+      <div
+        class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Empowering Growth,
+          <br class="hidden lg:inline-block">Understanding Diversity: Tailoring Experiences through Customer
+          Segmentation.
+        </h1>
+        <p class="mb-8 leading-relaxed">Customer segmentation is the practice of dividing a customer base into distinct
+          groups with shared characteristics to enable more targeted and effective marketing strategies. It helps
+          businesses tailor their approaches to better meet the diverse needs and preferences of different customer
+          segments.</p>
+        <div class="flex justify-center">
+          <button onclick="redirectToPredictSection()"
+            class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Get
+            Started</button>
+
+          <!-- <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <br /> <br /> <br /><br /> <br /> <br /> -->
+  <section id="predict" class="min-h-screen flex flex-col justify-center items-center bg-blue-200">
+    <!-- forms -->
+    <form method="post" class="max-w-sm mx-auto" onsubmit="return check()">
+      <!-- <div class="mb-5">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Gender</label>
+            <input type="number" id="gender" name="gender"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="1 for Male and 0 for Female" required>
+        </div> -->
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Age</label>
+        <input type="number" name="age" id="age"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Your Age" required>
+      </div>
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Annual
+          Salary</label>
+        <input type="number" name="annual_income" id="annual_income"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Your Salary" required>
+      </div>
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Spending
+          Score</label>
+        <input type="number" name="spending_score" id="spending_score"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Your Spending" required>
+      </div>
+
+      <input type="submit" value="Predict"
+        class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" />
+      <input type="button" onclick="resetForm()" value="Reset"
+        class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" />
+
+    </form>
+    <div class="text-center">
+      <!-- Your center content goes here -->
+      <br /><br />
+      <p id="ans" class="text-xl font-semibold text-blue-600/100 dark:text-blue-500/100">{{msg}}</p>
+    </div>
+  </section>
+
+  <!-- Visualization Section -->
+  <section id="visualization" class="h-screen flex flex-col justify-center items-center bg-blue-50 dark:bg-gray-900">
+    <h2 class="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-200">Data Visualization</h2>
+
+    <div class="flex space-x-8">
+        <img class="h-auto max-w-xl rounded-lg shadow-xl dark:shadow-gray-800" src="/static/inertia.jpg" alt="image description">
+        <img class="h-auto max-w-xl rounded-lg shadow-xl dark:shadow-gray-800" src="/static/scatter.jpg" alt="image description">
+    </div>
+
+</section>
+
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-blue-50">
+
+
+    <div id="accordion-color" data-accordion="collapse"
+      data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
+      <h2 id="accordion-color-heading-1">
+        <button type="button"
+          class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
+          data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
+          <span>Which algorithm is used for customer segmentation in this application?</span>
+          <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5 5 1 1 5" />
+          </svg>
+        </button>
+      </h2>
+      <div id="accordion-color-body-1" class="hidden" aria-labelledby="accordion-color-heading-1">
+        <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          <p class="mb-2 text-gray-500 dark:text-gray-400">The application uses a machine learning algorithm known as
+            K-Means Clustering for customer segmentation. K-Means is a popular unsupervised learning algorithm that
+            groups similar data points into clusters based on their features.</p>
+          <p class="text-gray-500 dark:text-gray-400"></p>
+        </div>
+      </div>
+      <h2 id="accordion-color-heading-2">
+        <button type="button"
+          class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
+          data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
+          <span>How does the algorithm determine the segments for customers?</span>
+          <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5 5 1 1 5" />
+          </svg>
+        </button>
+      </h2>
+      <div id="accordion-color-body-2" class="hidden" aria-labelledby="accordion-color-heading-2">
+        <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+          <p class="mb-2 text-gray-500 dark:text-gray-400">The algorithm analyzes customer data, including age, annual
+            income, and spending score, to identify patterns and similarities among customers. It then groups customers
+            into segments based on these features, aiming to create homogeneous groups with similar characteristics
+            within each segment.</p>
+          <p class="text-gray-500 dark:text-gray-400"></p>
+        </div>
+      </div>
+      <h2 id="accordion-color-heading-3">
+        <button type="button"
+          class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
+          data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
+          <span>Can I customize the algorithm or use a different one?</span>
+          <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5 5 1 1 5" />
+          </svg>
+        </button>
+      </h2>
+      <div id="accordion-color-body-3" class="hidden" aria-labelledby="accordion-color-heading-3">
+        <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+          <p class="mb-2 text-gray-500 dark:text-gray-400">Currently, the application is configured to use the K-Means
+            algorithm for customer segmentation. However, if you have specific requirements or preferences, the
+            application is designed to be extensible. You can explore and modify the codebase to integrate different
+            algorithms or customize the existing one based on your needs.</p>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite
+            Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.
+          </p>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+          <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+            <li><a href="https://www.geeksforgeeks.org/clustering-in-machine-learning/"
+                class="text-blue-600 dark:text-blue-500 hover:underline">Clustering</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+
+
+
+  <!-- <br/><br/><br/><br/><br/><br/> -->
+  <!-- footer -->
+
+
+  <footer class="bg-blue-300 rounded-lg shadow m-4 dark:bg-gray-800 ">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://flowbite.com/"
+          class="hover:underline">Vedant Kadam</a>. Designed and Developed.
+      </span>
+      <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+          <a href="#" class="hover:underline me-4 md:me-6"></a>
+        </li>
+        <li>
+          <a href="#" class="hover:underline me-4 md:me-6"> </a>
+        </li>
+        <li>
+          <a href="#" class="hover:underline me-4 md:me-6"></a>
+        </li>
+        <li>
+          <a href="#" class="hover:underline"></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>
